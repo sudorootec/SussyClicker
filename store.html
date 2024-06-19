@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Sussy Clicker - Store</title>
+    <link rel="icon" type="image/x-icon" href="images/misc/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="css/info_popup.css">
+    <link rel="stylesheet" type="text/css" href="css/volume.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="javascript/info_popup.js" defer></script>
+    <script src="javascript/utils.js" defer></script>
+    <script src="javascript/storage.js" defer></script>
+    <script src="javascript/templates.js" defer></script>
+    <script src="javascript/views.js" defer></script>
+    <script src="javascript/audio.js" defer></script>
+    <script src="javascript/helpers.js" defer></script>
+    <script src="javascript/upgrades.js" defer></script>
+    <script src="javascript/main.js" defer></script>
+    <style>
+      /* Mobile adaptation styles */
+      body, html {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        overflow-x: hidden;
+      }
+      .topnav, #game_wrapper, #store, .vert-scrollable {
+        max-width: 100%;
+      }
+      button, input, p {
+        font-size: larger;
+      }
+      /* Disable zoom */
+      body {
+        touch-action: manipulation;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="topnav">
+      <a href="index.html" id="backButton">
+        <i class="fas fa-arrow-left"></i>
+      </a>
+    </div>
+
+    <div id="game_wrapper">
+      <div id="store" class="vert-scrollable">
+        <h2 id="sussyStore">Sussy Store</h2>
+        <div id="upgradesWrapper">
+          <div id="buyAllUpgrades">Upgrades</div>
+          <div id="upgradeListWrapper">
+            <ul id="upgrades"></ul>
+          </div>
+        </div>
+        <div class="helpersWrapper">
+          <div id="helperBuyModifier">
+            <div id="buySell">
+              <div class="helper-modifier-option drop-cap modifier-opt-selected" id="storeBuy">BUY</div>
+              <div class="helper-modifier-option drop-cap" id="storeSell" title="You have not unlocked selling helpers">SELL</div>
+            </div>
+            <div class="helper-modifier-option store-quantity-modifier modifier-opt-selected" id="store1x">1</div>
+            <div class="helper-modifier-option store-quantity-modifier" id="store10x">10</div>
+            <div class="helper-modifier-option store-quantity-modifier" id="store100x">100</div>
+            <div class="helper-modifier-option store-quantity-modifier" id="storeSellAll" hidden>ALL</div>
+          </div>
+          <ul id="helper_list"></ul>
+        </div>
+      </div>    
+    </div>
+
+    <div class="build-version">Alpha 1.0</div>
+  </body>
+</html>
