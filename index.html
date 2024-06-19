@@ -2,15 +2,12 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
-
     <title>Sussy Clicker</title>
-    
     <link rel="icon" type="image/x-icon" href="images/misc/favicon.ico">
     <link rel="stylesheet" type="text/css" href="css/info_popup.css">
     <link rel="stylesheet" type="text/css" href="css/volume.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-
     <script src="javascript/info_popup.js" defer></script>
     <script src="javascript/utils.js" defer></script>
     <script src="javascript/storage.js" defer></script>
@@ -20,21 +17,36 @@
     <script src="javascript/helpers.js" defer></script>
     <script src="javascript/upgrades.js" defer></script>
     <script src="javascript/main.js" defer></script>
+    <script src="https://telegram.org/js/telegram-widget.js?7" async defer></script>
+    <style>
+      /* Mobile adaptation styles */
+      body, html {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        overflow-x: hidden;
+      }
+      .topnav, #game_wrapper, #store, .vert-scrollable {
+        max-width: 100%;
+      }
+      button, input, p {
+        font-size: larger;
+      }
+      /* Disable zoom */
+      body {
+        touch-action: manipulation;
+      }
+    </style>
   </head>
 
   <body>
     <div class="topnav">
-      <a id="infoButton">
-        <i class="fas fa-info-circle"></i>
-      </a>
-
       <a id="optionsButton">
         <i class="fas fa-cog"></i>
       </a>
-
       <div id="optionsCard">
         <h1>OPTIONS</h1>
-        
         <div id="optionsContent">
           <h2>VOLUME</h2>
           <div id="volume_container">
@@ -42,69 +54,69 @@
             <input type="range" id="volume_slider">
             <button id="mute_button">Mute</button>
           </div>
-
-          <h2>GAME SAVES</h2>
-          <div id="gameSavesWrapper">
-            <button id="saveGame">
-              Export Save
-            </button>
-
-            <button id="loadSave">
-              <label for="uploadSave">Import Save</label>
-              <input type="file" hidden id="uploadSave">
-            </button>
-
-            <button id="deleteSave">
-              Delete Save ⚠️
-            </button>
-          </div>
-
         </div>
         <button id="closeOptButton">Close</button>
       </div>
     </div>
-    
+
     <div id="game_wrapper">
       <div id="button_stats">
         <button id="sussy_button"><img src="images/misc/sussy.png" alt="amogus"></button>
         <p id="score">Sussy Meter: 0</p>
         <p id="sps">Total sus/s: 0</p>
       </div>
-  
+
       <div id="store" class="vert-scrollable">
         <h2 id="sussyStore">Sussy Store</h2>
-
         <div id="upgradesWrapper">
-					<div id="buyAllUpgrades">
-						Upgrades
-					</div>
+          <div id="buyAllUpgrades">Upgrades</div>
           <div id="upgradeListWrapper">
-            <ul id="upgrades">
-            </ul>
+            <ul id="upgrades"></ul>
           </div>
         </div>
-
-				<div class="helpersWrapper">
+        <div class="helpersWrapper">
           <div id="helperBuyModifier">
             <div id="buySell">
               <div class="helper-modifier-option drop-cap modifier-opt-selected" id="storeBuy">BUY</div>
-              <div class="helper-modifier-option drop-cap" id="storeSell" title="You have not unlocked selling helpers">SELL</div> 
-              <!-- jk I just haven't implemented lol -->
+              <div class="helper-modifier-option drop-cap" id="storeSell" title="You have not unlocked selling helpers">SELL</div>
             </div>
             <div class="helper-modifier-option store-quantity-modifier modifier-opt-selected" id="store1x">1</div>
             <div class="helper-modifier-option store-quantity-modifier" id="store10x">10</div>
             <div class="helper-modifier-option store-quantity-modifier" id="store100x">100</div>
             <div class="helper-modifier-option store-quantity-modifier" id="storeSellAll" hidden>ALL</div>
-					</div>
-					<ul id="helper_list"></ul>
-				</div>
+          </div>
+          <ul id="helper_list"></ul>
+        </div>
       </div>    
     </div>
 
     <div id="infoPopup" class="vert-scrollable"></div>
+    <div class="build-version">Alpha 1.0</div>
 
-    <div class="build-version">
-      Alpha 1.0
-    </div>
+    <!-- Telegram Login Widget -->
+    <script>
+      window.onload = function() {
+        TelegramLoginWidget.init({
+          bot_id: 'YOUR_BOT_ID', 
+          onAuthCallback: function(user) {
+            console.log(user);
+            // Save user data
+            fetch('/save_user', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({
+                id: user.id,
+                username: user.username,
+                first_name: user.first_name,
+                last_name: user.last_name,
+                progress: 0 // Initially set to 0, update as needed
+              })
+            });
+          }
+        });
+      }
+    </script>
   </body>
 </html>
